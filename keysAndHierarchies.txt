@@ -1,0 +1,2 @@
+A->B->C
+id:int,name:str,food:str,type:str
