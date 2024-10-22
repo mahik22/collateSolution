@@ -88,20 +88,21 @@ def print_processed_data(prepared_dict, important_keys, hierarchy_list):
                         print(KeyValuePair[key])
 
 
-with open("input.txt") as file_obj:
-    lines = file_obj.readlines()
+if __name__ == "__main__":
+    with open("input.txt") as file_obj:
+        lines = file_obj.readlines()
 
-hierarchies = input() #Expected Format: "A->B->C"
-hierarchy_list = hierarchies.split("->")
+    input_important_keys = input() #Expected Format: "id:int,name:str,food:str,type:str"
+    important_key_values = input_important_keys.split(",")
+    important_keys = {}
+    for keyValue in important_key_values:
+        key, value = keyValue.split(":")
+        important_keys[key] = value
 
-input_important_keys = input() #Expected Format: "id:int,name:str,food:str,type:str"
-important_key_values = input_important_keys.split(",")
-important_keys = {}
-for keyValue in important_key_values:
-    key, value = keyValue.split(":")
-    important_keys[key] = value
+    #important_keys = {"id":"int", "name":"str", "food":"str", "type":"str"}
 
-#important_keys = {"id":"int", "name":"str", "food":"str", "type":"str"}
+    hierarchies = input() #Expected Format: "A->B->C"
+    hierarchy_list = hierarchies.split("->")
 
-prepared_dict = process_file(lines, important_keys)
-print_processed_data(prepared_dict, important_keys, hierarchy_list)
+    prepared_dict = process_file(lines, important_keys)
+    print_processed_data(prepared_dict, important_keys, hierarchy_list)
